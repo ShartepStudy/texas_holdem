@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+suits = ['C', 'D', 'H', 'S']
+ranges = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+
+suits.each do |suite|
+  ranges.each do |range|
+    Card.create(suite: suite, range: range)
+  end
+end

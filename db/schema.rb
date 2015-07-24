@@ -11,11 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150724180930) do
+ActiveRecord::Schema.define(version: 20150724185918) do
 
-  create_table "decks", force: :cascade do |t|
-    t.string "suit"
-    t.string "range"
+  create_table "cards", force: :cascade do |t|
+    t.string   "suite"
+    t.string   "range"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end
