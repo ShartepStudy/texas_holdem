@@ -1,0 +1,41 @@
+%h1 Listing games
+
+%table
+  %thead
+    %tr
+      %th Player a
+      %th Player b
+      %th A card 1
+      %th A card 2
+      %th B card 1
+      %th B card 2
+      %th Card 1
+      %th Card 2
+      %th Card 3
+      %th Card 4
+      %th Card 5
+      %th
+      %th
+      %th
+
+  %tbody
+    - @games.each do |game|
+      %tr
+        %td= game.player_a
+        %td= game.player_b
+        %td= game.a_card_1
+        %td= game.a_card_2
+        %td= game.b_card_1
+        %td= game.b_card_2
+        %td= game.card_1
+        %td= game.card_2
+        %td= game.card_3
+        %td= game.card_4
+        %td= game.card_5
+        %td= link_to 'Show', game
+        %td= link_to 'Edit', edit_game_path(game)
+        %td= link_to 'Destroy', game, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Game', new_game_path
