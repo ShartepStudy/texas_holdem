@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Player a:
+  = @game.player_a.name
+  %b Cards:
+  = @game.a_card_1.name
+  = @game.a_card_2.name
+
+%p
+  %b Common cards:
+  = @game.card_1.name
+  = @game.card_2.name
+  = @game.card_3.name
+  = @game.card_4.name
+  = @game.card_5.name
+
+%p
+  %b Player b:
+  = @game.player_b.name
+  %b Cards:
+  = @game.b_card_1.name
+  = @game.b_card_2.name
+
+%h1
+  %b
+    The Winner is
+    = @winner.name
+
+= link_to 'New Game', new_game_path
