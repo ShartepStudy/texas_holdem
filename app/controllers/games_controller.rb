@@ -16,6 +16,7 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
+    current_user.clear_game
   end
 
   # GET /games/1/edit
@@ -39,7 +40,9 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
+        @game.player_a.update(game_id: @game.id)
+        @game.player_b.update(game_id: @game.id)
+        format.html { redirect_to @game }
         format.json { render :show, status: :created, location: @game }
       else
         format.html { render :new }

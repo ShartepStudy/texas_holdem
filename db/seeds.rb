@@ -17,3 +17,5 @@ end
 
 User.create(name: 'player_a', password: 'aaaa')
 User.create(name: 'player_b', password: 'bbbb')
+User.create(name: 'player_c', password: 'cccc')
+User.create(name: 'player_d', password: 'dddd')

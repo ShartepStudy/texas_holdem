@@ -1,3 +1,7 @@
+%br
+%h2
+  Your name is
+  = current_user.name
 = form_for @game do |f|
   - if @game.errors.any?
     #error_explanation
@@ -6,8 +10,52 @@
         - @game.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
+  .field#choose_player
     = f.label :player_b, 'Choose Player:'
-    = f.collection_select :player_b_id, User.where.not(id: current_user.id), :id, :name
+    = f.collection_select :player_b_id, User.not_invited.where.not(id: current_user.id), :id, :name
+  .field#wait_player
+    Waiting fo second player
+    %span#dot_bar .
   .actions
-    = f.submit 'Start'
+    = button_tag 'Invite', type: :button, id: 'invite_btn'
+
+  .field.invited
+    %br
+    User
+    %span#invited_user_name
+    invite you to play
+  .actions.invited
+    = f.submit 'Start', id: 'start_btn'
+    = button_tag 'Decline', type: :button, id: 'decline_btn'
+
+:javascript
+  var timerId = null;
+
+  function waiting(){
+    timerId = window.setInterval(function(){
+      str = $('#dot_bar').text();
+      if (str.length > 30) str = '';
+      $('#dot_bar').text(str + ' .');
+
+      $.post( "#{check_decline_invite_user_path(current_user)}" );
+      $.post( "#{check_game_started_user_path(current_user)}" );
+    }, 1000);
+  }
+
+  $(document).ready(function(){
+    $('#wait_player, .invited').hide();
+
+    window.setInterval(function(){ $.post( "#{check_invite_user_path(current_user)}" ); }, 1000);
+
+    $('#decline_btn').click(function(){
+      $.post( "#{decline_invite_user_path(current_user)}" );
+    });
+
+    $('#invite_btn').click(function(){
+      if ($(this).text() == 'Invite') {
+        $.post( "#{invite_user_path(current_user)}", {invited_user_id: $('select').val()} );
+      } else {
+        $.post( "#{uninvite_user_path(current_user)}" );
+      }
+    });
+  });

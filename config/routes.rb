@@ -1,11 +1,22 @@
 Rails.application.routes.draw do
+  resources :invites
   resources :games
   root   'sessions#new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
 
-  resources :users
+  resources :users do
+    member do
+      post 'invite'
+      post 'uninvite'
+      post 'check_invite'
+      post 'decline_invite'
+      post 'check_decline_invite'
+      post 'check_game_started'
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
