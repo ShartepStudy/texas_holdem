@@ -32,6 +32,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'tzinfo-data'
 gem 'ruby-poker'
+gem 'paperclip', '~> 4.3'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
