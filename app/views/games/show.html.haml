@@ -4,23 +4,20 @@
   %b Player a:
   = @game.player_a.name
   %b Cards:
-  = @game.a_card_1.name
-  = @game.a_card_2.name
+  - @game.cards_games.player_a.each do |pa_card|
+    = pa_card.playing_card.name
 
 %p
   %b Common cards:
-  = @game.card_1.name
-  = @game.card_2.name
-  = @game.card_3.name
-  = @game.card_4.name
-  = @game.card_5.name
+  - @game.cards_games.common.each do |c_card|
+    = c_card.playing_card.name
 
 %p
   %b Player b:
   = @game.player_b.name
   %b Cards:
-  = @game.b_card_1.name
-  = @game.b_card_2.name
+  - @game.cards_games.player_b.each do |pb_card|
+    = pb_card.playing_card.name
 
 %h1
   %b

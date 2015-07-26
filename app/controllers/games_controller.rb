@@ -11,6 +11,7 @@ class GamesController < ApplicationController
   # GET /games/1.json
   def show
     @winner = @game.winner
+    current_user.clear_game
   end
 
   # GET /games/new
@@ -28,15 +29,7 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     @game.player_a = current_user
-    @game.a_card_1 = PlayingCard.offset(rand(PlayingCard.count)).first
-    @game.a_card_2 = PlayingCard.offset(rand(PlayingCard.count)).first
-    @game.b_card_1 = PlayingCard.offset(rand(PlayingCard.count)).first
-    @game.b_card_2 = PlayingCard.offset(rand(PlayingCard.count)).first
-    @game.card_1 = PlayingCard.offset(rand(PlayingCard.count)).first
-    @game.card_2 = PlayingCard.offset(rand(PlayingCard.count)).first
-    @game.card_3 = PlayingCard.offset(rand(PlayingCard.count)).first
-    @game.card_4 = PlayingCard.offset(rand(PlayingCard.count)).first
-    @game.card_5 = PlayingCard.offset(rand(PlayingCard.count)).first
+    @game.generate_cards
 
     respond_to do |format|
       if @game.save

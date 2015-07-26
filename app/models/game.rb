@@ -1,19 +1,23 @@
 class Game < ActiveRecord::Base
   belongs_to :player_a, class_name: 'User'
   belongs_to :player_b, class_name: 'User'
-  belongs_to :a_card_1, class_name: 'PlayingCard'
-  belongs_to :a_card_2, class_name: 'PlayingCard'
-  belongs_to :b_card_1, class_name: 'PlayingCard'
-  belongs_to :b_card_2, class_name: 'PlayingCard'
-  belongs_to :card_1, class_name: 'PlayingCard'
-  belongs_to :card_2, class_name: 'PlayingCard'
-  belongs_to :card_3, class_name: 'PlayingCard'
-  belongs_to :card_4, class_name: 'PlayingCard'
-  belongs_to :card_5, class_name: 'PlayingCard'
+  has_many :cards_games
+  has_many :playing_cards, through: :cards_games
+
+  def generate_cards
+    2.times {
+      cards_games << CardsGame.create(playing_card: PlayingCard.random(self), game: self, owner_type_id: OwnerType::PLAYER_A)
+      cards_games << CardsGame.create(playing_card: PlayingCard.random(self), game: self, owner_type_id: OwnerType::PLAYER_B)
+    }
+    5.times { cards_games << CardsGame.create(playing_card: PlayingCard.random(self), game: self, owner_type_id: OwnerType::COMMON) }
+  end
 
   def winner
-    hand_a = PokerHand.new([a_card_1, a_card_2, card_1, card_2, card_3, card_4, card_5].map{|c| c.name})
-    hand_b = PokerHand.new([b_card_1, b_card_2, card_1, card_2, card_3, card_4, card_5].map{|c| c.name})
+    common = cards_games.common.map{|c| c.playing_card.name}
+    cards_a = cards_games.player_a.map{|c| c.playing_card.name}
+    cards_b = cards_games.player_b.map{|c| c.playing_card.name}
+    hand_a = PokerHand.new(cards_a + common)
+    hand_b = PokerHand.new(cards_b + common)
 
     hand_a > hand_b ? player_a : player_b
   end

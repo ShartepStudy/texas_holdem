@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  playing_card: 
+  game: 
+  owner_type: 
+
+two:
+  playing_card: 
+  game: 
+  owner_type: 
