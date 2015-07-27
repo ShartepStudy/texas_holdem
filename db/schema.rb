@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726213430) do
+ActiveRecord::Schema.define(version: 20150727120636) do
 
   create_table "cards_games", force: :cascade do |t|
     t.integer  "playing_card_id"
@@ -44,10 +44,11 @@ ActiveRecord::Schema.define(version: 20150726213430) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "invited_user_id"
     t.integer  "game_id"
+    t.boolean  "logged_in",       default: false
   end
 
 end

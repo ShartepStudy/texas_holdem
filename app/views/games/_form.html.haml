@@ -12,7 +12,7 @@
 
   .field#choose_player
     = f.label :player_b, 'Choose Player:'
-    = f.collection_select :player_b_id, User.not_invited.where.not(id: current_user.id), :id, :name
+    = f.collection_select :player_b_id, User.not_invited.in_game.where.not(id: current_user.id), :id, :name
   .field#wait_player
     Waiting fo second player
     %span#dot_bar .
@@ -46,6 +46,9 @@
     $('#wait_player, .invited').hide();
 
     window.setInterval(function(){ $.post( "#{check_invite_user_path(current_user)}" ); }, 1000);
+    window.setInterval(function(){ $.get( "#{get_active_user_path(current_user)}", function( data ){
+      $('#choose_player select').html( data )
+    } ); }, 1000);
 
     $('#decline_btn').click(function(){
       $.post( "#{decline_invite_user_path(current_user)}" );

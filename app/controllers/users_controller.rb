@@ -130,6 +130,10 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def get_active
+    render layout: false
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

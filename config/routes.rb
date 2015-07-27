@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       post 'decline_invite'
       post 'check_decline_invite'
       post 'check_game_started'
+      get 'get_active'
     end
   end
 

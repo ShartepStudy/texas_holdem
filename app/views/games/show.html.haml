@@ -25,6 +25,12 @@
 %h1
   %b
     The Winner is
-    = @winner.name
+    = @winner[:player].name
+    %br
+    %br
+    Winning combination is
+    = @winner[:combination]
 
 = link_to 'New Game', new_game_path
+%br
+= link_to 'Log out', logout_path, method: :delete

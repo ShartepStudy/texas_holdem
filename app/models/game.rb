@@ -19,6 +19,6 @@ class Game < ActiveRecord::Base
     hand_a = PokerHand.new(cards_a + common)
     hand_b = PokerHand.new(cards_b + common)
 
-    hand_a > hand_b ? player_a : player_b
+    hand_a > hand_b ? {player: player_a, combination: hand_a.rank} : {player: player_b, combinatiion: hand_b.rank}
   end
 end
