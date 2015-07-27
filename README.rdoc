@@ -1,28 +1,10 @@
-== README
+== How to start
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+You should open page with game at least in two differnt browsers on one computer or in two different computers,
+Create new users or login as    login: player_a psw: aaaa
+                                       player_b      bbbb
+                                       player_c      cccc
+                                       player_d      dddd
+One player invite some of logged in players to play
+Other player should accept invitation by click 'Start' button
+Then players see result of game
