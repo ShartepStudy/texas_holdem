@@ -1,10 +1,12 @@
 == How to start
 
 You should open page with game at least in two differnt browsers on one computer or in two different computers,
-Create new users or login as    login: player_a psw: aaaa
-                                       player_b      bbbb
-                                       player_c      cccc
-                                       player_d      dddd
+Create new users or login as    
+                                      login:        psw: 
+                                      player_a      aaaa
+                                      player_b      bbbb
+                                      player_c      cccc
+                                      player_d      dddd
 One player invite some of logged in players to play
 Other player should accept invitation by click 'Start' button
 Then players see result of game
