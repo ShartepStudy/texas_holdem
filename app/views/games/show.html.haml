@@ -6,13 +6,13 @@
   %b Cards:
   - @game.cards_games.player_a.each do |pa_card|
     = pa_card.playing_card.name
-    = image_tag pa_card.playing_card.image.url
+    = image_tag pa_card.playing_card.avatar.url
 
 %p
   %b Common cards:
   - @game.cards_games.common.each do |c_card|
     = c_card.playing_card.name
-    = image_tag c_card.playing_card.image.url
+    = image_tag c_card.playing_card.avatar.url
 
 %p
   %b Player b:
@@ -20,7 +20,7 @@
   %b Cards:
   - @game.cards_games.player_b.each do |pb_card|
     = pb_card.playing_card.name
-    = image_tag pb_card.playing_card.image.url
+    = image_tag pb_card.playing_card.avatar.url
 
 %h1
   %b

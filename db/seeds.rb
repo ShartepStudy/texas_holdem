@@ -11,8 +11,7 @@ ranges = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
 
 suits.each do |suite|
   ranges.each do |range|
-    PlayingCard.create(suite: suite, range: range)
-    # PlayingCard.create(suite: suite, range: range, image: File.new("#{Rails.root}/public/card_images/#{range + suite}.jpg"))
+    PlayingCard.create(suite: suite, range: range, avatar: File.new("#{Rails.root}/public/card_images/#{range + suite}.jpg"))
   end
 end
 
